@@ -1,0 +1,82 @@
+{
+    "type": "FeatureCollection",
+    "etag": "a94fff5ce3d19fa1247e81464ed75f64",
+    "features": [
+        {
+            "id": "HpKNMfy9iLRVdcz7",
+            "type": "Feature",
+            "properties": {
+                "name": "Frederick Douglass National Historic Site",
+                "type": "National Historic Site",
+                "state": "DC",
+                "region": "NC",
+                "parkName": "Frederick Douglass",
+                "@ns:com:here:xyz": {
+                    "tags": [
+                        "national-historic-sites"
+                    ],
+                    "space": "iDEow67J",
+                    "createdAt": 1612995936307,
+                    "updatedAt": 1612995936307
+                }
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            -76.984645,
+                            38.861505
+                        ],
+                        [
+                            -76.983993,
+                            38.863782
+                        ],
+                        [
+                            -76.98582,
+                            38.864113
+                        ],
+                        [
+                            -76.98622,
+                            38.862765
+                        ],
+                        [
+                            -76.9854,
+                            38.862424
+                        ],
+                        [
+                            -76.985245,
+                            38.861761
+                        ],
+                        [
+                            -76.984645,
+                            38.861505
+                        ]
+                    ],
+                    [
+                        [
+                            -76.983994,
+                            38.864078
+                        ],
+                        [
+                            -76.984136,
+                            38.864104
+                        ],
+                        [
+                            -76.984173,
+                            38.863979
+                        ],
+                        [
+                            -76.984031,
+                            38.863953
+                        ],
+                        [
+                            -76.983994,
+                            38.864078
+                        ]
+                    ]
+                ]
+            }
+        }
+]
+}

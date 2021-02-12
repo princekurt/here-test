@@ -22,22 +22,120 @@
     [super viewDidLoad];
     // create geo coordinate
     NMAGeoCoordinates* geoCoordCenter =
-        [[NMAGeoCoordinates alloc] initWithLatitude:49.260327 longitude:-123.115025];
+        [[NMAGeoCoordinates alloc] initWithLatitude:38.861505 longitude:-76.984645];
     // set map view with geo center
     [self.mapView setGeoCenter:geoCoordCenter withAnimation:NMAMapAnimationNone];
     // set zoom level
-    self.mapView.zoomLevel = 2;
+    self.mapView.zoomLevel = 13;
     self.createRouteButton.titleLabel.adjustsFontSizeToFitWidth = YES;
   
     NMAMapLoader *mapLoader = [NMAMapLoader sharedMapLoader];
     mapLoader.delegate = self;
   
-    [OlympicParkTileLayer addOlympicParkTileLayerToMapView:self.mapView];
+//    [OlympicParkTileLayer addOlympicParkTileLayerToMapView:self.mapView];
     
 //    [[NMAMapLoader sharedMapLoader] getMapPackages];
     NMAGeoCoordinates* delaware =
-      [[NMAGeoCoordinates alloc] initWithLatitude:38.7746 longitude:-75.1393];
+      [[NMAGeoCoordinates alloc] initWithLatitude:38.861505 longitude:-76.984645];
     [[NMAMapLoader sharedMapLoader] getMapPackageAtGeoCoordinates:delaware];
+  
+  NSDictionary *json = [self JSONFromFile];
+  NSString *stringFromJSON = [self stringOutputForDictionary:json];
+  NSArray *array = [json objectForKey:@"features"];
+  NSDictionary *feature = array[0];
+  NSDictionary *geometry = [feature objectForKey:@"geometry"];
+  NSArray *coorindates = [geometry objectForKey:@"coordinates"];
+  NSArray *polygon1 = coorindates[0];
+  
+  NSMutableArray<NMAGeoCoordinates *> *coordinates =  [[NSMutableArray alloc] init];
+  NMAMapPolygon *Polygon = [[NMAMapPolygon alloc] init ];
+  [Polygon setFillColor:[self colorWithHexString:@"#555555"] ];
+  
+  for (int x = 0; x < polygon1.count; x++) {
+    NSArray *polygon = polygon1[x];
+    double longitude = [polygon[0] doubleValue];
+    double latitude = [polygon[1] doubleValue];
+    NMAGeoCoordinates *newCoordinate = [NMAGeoCoordinates geoCoordinatesWithLatitude:latitude longitude:longitude];
+    [Polygon appendVertex:newCoordinate];
+  }
+  
+
+  [self.mapView addMapObject: Polygon];
+  
+  
+  
+  
+  
+}
+
+- (UIColor *) colorWithHexString: (NSString *) hexString
+{
+    NSString *colorString = [[hexString stringByReplacingOccurrencesOfString: @"#" withString: @""] uppercaseString];
+
+    NSLog(@"colorString :%@",colorString);
+    CGFloat alpha, red, blue, green;
+
+    // #RGB
+    alpha = 1.0f;
+    red   = [self colorComponentFrom: colorString start: 0 length: 2];
+    green = [self colorComponentFrom: colorString start: 2 length: 2];
+    blue  = [self colorComponentFrom: colorString start: 4 length: 2];
+
+    return [UIColor colorWithRed: red green: green blue: blue alpha: alpha];
+}
+
+
+- (CGFloat) colorComponentFrom: (NSString *) string start: (NSUInteger) start length: (NSUInteger) length {
+    NSString *substring = [string substringWithRange: NSMakeRange(start, length)];
+    NSString *fullHex = length == 2 ? substring : [NSString stringWithFormat: @"%@%@", substring, substring];
+    unsigned hexComponent;
+    [[NSScanner scannerWithString: fullHex] scanHexInt: &hexComponent];
+    return hexComponent / 255.0;
+}
+
+- (NSString *)stringOutputForDictionary:(NSDictionary *)inputDict {
+   NSMutableString * outputString = [NSMutableString stringWithCapacity:256];
+
+   NSArray * allKeys = [inputDict allKeys];
+
+   for (NSString * key in allKeys) {
+        if ([[inputDict objectForKey:key] isKindOfClass:[NSDictionary class]]) {
+            [outputString appendString: [self stringOutputForDictionary: (NSDictionary *)inputDict]];
+        }
+        else {
+        [outputString appendString: key];
+        [outputString appendString: @": "];
+        [outputString appendString: [[inputDict objectForKey: key] description]];
+        }
+    [outputString appendString: @"\n"];
+    }
+
+    return [NSString stringWithString: outputString];
+}
+
+- (NSDictionary *)JSONFromFile
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"park" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+}
+
+- (NSString *) getDataFrom:(NSString *)url{
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"GET"];
+    [request setURL:[NSURL URLWithString:url]];
+    [request setValue:@"application/geo+json" forHTTPHeaderField:@"accept"];
+    NSError *error = nil;
+    NSHTTPURLResponse *responseCode = nil;
+
+    NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
+
+    if([responseCode statusCode] != 200){
+        NSLog(@"Error getting %@, HTTP status code %i", url, [responseCode statusCode]);
+        return nil;
+    }
+
+    return [[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding];
 }
 
 - (void)didReceiveMemoryWarning { [super didReceiveMemoryWarning]; }

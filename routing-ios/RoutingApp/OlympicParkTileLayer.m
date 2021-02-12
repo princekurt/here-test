@@ -14,6 +14,7 @@
       orientation:NMAMapViewPreserveValue
       tilt:NMAMapViewPreserveValue
       withAnimation:NMAMapAnimationNone ];
+  
 }
 
 -(id)init

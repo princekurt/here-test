@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		451AB71825D7041E00B00AB3 /* OlympicParkTileLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 451AB71725D7041E00B00AB3 /* OlympicParkTileLayer.m */; };
+		451AB72B25D7126B00B00AB3 /* park.json in Resources */ = {isa = PBXBuildFile; fileRef = 451AB72A25D711B900B00AB3 /* park.json */; };
 		4BC9B1951D7A400B0009B634 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9B1941D7A400B0009B634 /* main.m */; };
 		4BC9B1981D7A400B0009B634 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9B1971D7A400B0009B634 /* AppDelegate.m */; };
 		4BC9B19B1D7A400B0009B634 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9B19A1D7A400B0009B634 /* MainViewController.m */; };
@@ -39,6 +40,7 @@
 		1C7261EB1EB8B3C400386A31 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		451AB71725D7041E00B00AB3 /* OlympicParkTileLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OlympicParkTileLayer.m; sourceTree = "<group>"; };
 		451AB72125D7061B00B00AB3 /* OlympicParkTileLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OlympicParkTileLayer.h; sourceTree = "<group>"; };
+		451AB72A25D711B900B00AB3 /* park.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = park.json; sourceTree = "<group>"; };
 		4B8E32751E27070D0009D1A5 /* RoutingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoutingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BC9B1941D7A400B0009B634 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4BC9B1961D7A400B0009B634 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				4BC9B1931D7A400B0009B634 /* Supporting Files */,
 				451AB71725D7041E00B00AB3 /* OlympicParkTileLayer.m */,
 				451AB72125D7061B00B00AB3 /* OlympicParkTileLayer.h */,
+				451AB72A25D711B900B00AB3 /* park.json */,
 			);
 			path = RoutingApp;
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 			files = (
 				4BC9B1A01D7A400B0009B634 /* Assets.xcassets in Resources */,
 				4BC9B19E1D7A400B0009B634 /* Main.storyboard in Resources */,
+				451AB72B25D7126B00B00AB3 /* park.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
