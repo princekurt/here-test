@@ -48,19 +48,28 @@
   NSArray *polygon1 = coorindates[0];
   
   NSMutableArray<NMAGeoCoordinates *> *coordinates =  [[NSMutableArray alloc] init];
-  NMAMapPolygon *Polygon = [[NMAMapPolygon alloc] init ];
-  [Polygon setFillColor:[UIColor colorWithRed:(176.0) green:(200.0) blue:(55.0) alpha:(0.5)] ];
-  
-  for (int x = 0; x < polygon1.count; x++) {
-    NSArray *polygon = polygon1[x];
-    double longitude = [polygon[0] doubleValue];
-    double latitude = [polygon[1] doubleValue];
-    NMAGeoCoordinates *newCoordinate = [NMAGeoCoordinates geoCoordinatesWithLatitude:latitude longitude:longitude];
-    [Polygon appendVertex:newCoordinate];
-  }
-  
 
-  [self.mapView addMapObject: Polygon];
+  NSMutableArray *polygons = [[NSMutableArray alloc] init];
+ 
+  
+  for (int y = 0; y < 10000; y++){
+    NMAMapPolygon *Polygon = [[NMAMapPolygon alloc] init ];
+    [Polygon setFillColor:[UIColor colorWithRed:(176.0) green:(200.0) blue:(55.0) alpha:(0.5)] ];
+  
+    for (int x = 0; x < polygon1.count; x++) {
+      NSArray *polygon = polygon1[x];
+      double longitude = [polygon[0] doubleValue] + y *.001;
+      double latitude = [polygon[1] doubleValue] + y *.001;
+      NMAGeoCoordinates *newCoordinate = [NMAGeoCoordinates geoCoordinatesWithLatitude:latitude longitude:longitude];
+      [Polygon appendVertex:newCoordinate];
+    }
+    
+    [polygons addObject:Polygon];
+    NSLog(@"BDS %lu", (unsigned long)polygons.count);
+  }
+ 
+  
+  [self.mapView addMapObjects:polygons];
   
   
   
