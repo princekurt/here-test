@@ -4,6 +4,7 @@
  */
 
 #import "MainViewController.h"
+#import "OlympicParkTileLayer.h"
 #import <NMAKit/NMAKit.h>
 
 @interface MainViewController ()
@@ -31,7 +32,9 @@
     NMAMapLoader *mapLoader = [NMAMapLoader sharedMapLoader];
     mapLoader.delegate = self;
   
-    [[NMAMapLoader sharedMapLoader] getMapPackages];
+    [OlympicParkTileLayer addOlympicParkTileLayerToMapView:self.mapView];
+    
+//    [[NMAMapLoader sharedMapLoader] getMapPackages];
     NMAGeoCoordinates* delaware =
       [[NMAGeoCoordinates alloc] initWithLatitude:38.7746 longitude:-75.1393];
     [[NMAMapLoader sharedMapLoader] getMapPackageAtGeoCoordinates:delaware];
