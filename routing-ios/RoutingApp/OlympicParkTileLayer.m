@@ -25,7 +25,7 @@
     // Set the bitmap format properties (must be compatible with pngs hosted on the
     // server)
     self.pixelFormat = NMAPixelFormatRGBA;
-    self.transparent = NO;
+    self.transparent = YES;
 
     // Limit the tiles to the bounding box supported by the server
     NMAGeoBoundingBox *olympicParkBoundingBox =
@@ -40,10 +40,10 @@
     // covers everything else on the map
     self.mapLayerType = NMAMapLayerTypeForeground;
 
-    // Enable caching
-    self.cacheTimeToLive = 60 * 60 * 24;  // 24 hours
-    self.cacheSizeLimit = 1024 * 1024 * 64; // 64MB
-    [self setCacheEnabled:YES withIdentifier:@"OlympicParkTileLayer"];
+//    // Enable caching
+//    self.cacheTimeToLive = 60 * 60 * 24;  // 24 hours
+//    self.cacheSizeLimit = 1024 * 1024 * 64; // 64MB
+//    [self setCacheEnabled:YES withIdentifier:@"OlympicParkTileLayer"];
   }
   return self;
 }
@@ -56,10 +56,10 @@
   // Return a URL for the specified tile
   // This tile source is hosted by HERE Global B.V. and may be removed at any time
   return [NSString stringWithFormat:
-    @"https://maps.aerisapi.com/dFeHg9eBCz5ssENOKKDIO_zLV7zGBpJobhYeqAgomY1A8N3yjARI2LhDlAiPTP/radar,ftemperatures/%lu/{%lu/%lu/current.png",
+    @"https://maps.aerisapi.com/dFeHg9eBCz5ssENOKKDIO_zLV7zGBpJobhYeqAgomY1A8N3yjARI2LhDlAiPTP/radar:50,ftemperatures:25/%lu/%lu/%lu/current.png",
     zoomLevel,
-    y,
-    x ];
+    x,
+    y ];
 }
 
 @end

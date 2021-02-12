@@ -26,7 +26,7 @@
     // set map view with geo center
     [self.mapView setGeoCenter:geoCoordCenter withAnimation:NMAMapAnimationNone];
     // set zoom level
-    self.mapView.zoomLevel = 13.2;
+    self.mapView.zoomLevel = 2;
     self.createRouteButton.titleLabel.adjustsFontSizeToFitWidth = YES;
   
     NMAMapLoader *mapLoader = [NMAMapLoader sharedMapLoader];
