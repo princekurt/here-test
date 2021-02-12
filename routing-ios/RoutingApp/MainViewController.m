@@ -49,7 +49,7 @@
   
   NSMutableArray<NMAGeoCoordinates *> *coordinates =  [[NSMutableArray alloc] init];
   NMAMapPolygon *Polygon = [[NMAMapPolygon alloc] init ];
-  [Polygon setFillColor:[self colorWithHexString:@"#555555"] ];
+  [Polygon setFillColor:[UIColor colorWithRed:(176.0) green:(200.0) blue:(55.0) alpha:(0.5)] ];
   
   for (int x = 0; x < polygon1.count; x++) {
     NSArray *polygon = polygon1[x];
