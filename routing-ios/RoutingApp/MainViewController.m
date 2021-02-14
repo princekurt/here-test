@@ -67,14 +67,19 @@
     [polygons addObject:Polygon];
     NSLog(@"BDS %lu", (unsigned long)polygons.count);
   }
+  
  
   
   [self.mapView addMapObjects:polygons];
+  [self performSelector:@selector(removeMapLayers:) withObject:polygons afterDelay:20.0];
   
   
   
-  
-  
+}
+
+- (void) removeMapLayers:(NSArray *) polygons  {
+  NSLog(@"BDS removing polygons");
+  [self.mapView removeAllMapObjects];
 }
 
 - (UIColor *) colorWithHexString: (NSString *) hexString
