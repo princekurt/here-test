@@ -56,7 +56,7 @@
   // Return a URL for the specified tile
   // This tile source is hosted by HERE Global B.V. and may be removed at any time
   return [NSString stringWithFormat:
-    @"https://maps.aerisapi.com/dFeHg9eBCz5ssENOKKDIO_zLV7zGBpJobhYeqAgomY1A8N3yjARI2LhDlAiPTP/radar:50,ftemperatures:25/%lu/%lu/%lu/current.png",
+    @"https://aerisapi.rvtripwizard.com/dFeHg9eBCz5ssENOKKDIO_zLV7zGBpJobhYeqAgomY1A8N3yjARI2LhDlAiPTP/radar:50,ftemperatures:25/%lu/%lu/%lu/current.png",
     zoomLevel,
     x,
     y ];
